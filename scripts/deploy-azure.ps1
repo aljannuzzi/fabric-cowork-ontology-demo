@@ -1,8 +1,8 @@
 param(
   [string]$ResourceGroup = "rg-fabric-cowork-ontology-demo",
   [string]$Location = "eastus",
-  [string]$AppName = "fabric-cowork-ontology-demo",
-  [string]$SqlServerName = "sql-fabric-cowork-ontology-demo",
+  [string]$AppName = "",
+  [string]$SqlServerName = "",
   [string]$SqlDatabase = "novatel-ontology",
   [string]$SqlAdmin = "sqladminuser"
 )
@@ -12,6 +12,15 @@ $ErrorActionPreference = "Stop"
 $bytes = New-Object byte[] 18
 [System.Security.Cryptography.RandomNumberGenerator]::Fill($bytes)
 $password = ([Convert]::ToBase64String($bytes) -replace '[+/=]', '9') + "aA1!"
+$suffix = (az account show --query id -o tsv).Substring(0, 8).ToLower()
+
+if (-not $AppName) {
+  $AppName = "fabric-cowork-ontology-$suffix"
+}
+
+if (-not $SqlServerName) {
+  $SqlServerName = "sql-fabric-cowork-$suffix"
+}
 
 az group create --name $ResourceGroup --location $Location | Out-Null
 az sql server create --name $SqlServerName --resource-group $ResourceGroup --location $Location --admin-user $SqlAdmin --admin-password $password | Out-Null
@@ -28,7 +37,8 @@ az webapp config appsettings set --resource-group $ResourceGroup --name $AppName
   SCM_DO_BUILD_DURING_DEPLOYMENT=true | Out-Null
 
 npm install
-Compress-Archive -Path .\* -DestinationPath .\deploy.zip -Force
+$deployItems = @(".\package.json", ".\package-lock.json", ".\src", ".\public", ".\README.md")
+Compress-Archive -Path $deployItems -DestinationPath .\deploy.zip -Force
 az webapp deploy --resource-group $ResourceGroup --name $AppName --src-path .\deploy.zip --type zip | Out-Null
 Remove-Item .\deploy.zip -Force
 
