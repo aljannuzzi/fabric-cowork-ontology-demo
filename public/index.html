@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fabric IQ + Cowork Ontology Demo</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">NovaTel Enterprise</p>
+        <h1>Cowork as the AI interface for ontology-grounded Fabric data</h1>
+        <p>
+          This demo shows Work IQ email context triggering a Cowork skill, exposed through MCP,
+          that asks a Fabric-style Data Agent to navigate the ontology graph and retrieve trusted business data.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="card wide">
+          <div class="section-title">
+            <h2>Fabric IQ ontology graph</h2>
+            <span>Customer -> Subscription -> Product -> Usage -> Experience -> Renewal Risk</span>
+          </div>
+          <svg id="graph" viewBox="0 0 1060 420" role="img" aria-label="Ontology graph"></svg>
+        </article>
+
+        <article class="card">
+          <h2>Cowork prompt</h2>
+          <textarea id="emailText">Can you quickly tell me which enterprise customers are at risk this quarter and what we should do about Contoso Mobile?</textarea>
+          <button id="runDemo">Ask Cowork</button>
+        </article>
+
+        <article class="card">
+          <h2>Data Agent answer</h2>
+          <pre id="answer">Run the demo to invoke the MCP skill and ontology-aware Data Agent.</pre>
+        </article>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
