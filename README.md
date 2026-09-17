@@ -31,8 +31,9 @@ Set these app settings to use Azure SQL:
 
 - `SQL_SERVER`
 - `SQL_DATABASE`
-- `SQL_USER`
-- `SQL_PASSWORD`
+- `SQL_AUTH=entra` for managed identity / Entra authentication
+
+Password authentication is also supported for local labs with `SQL_USER` and `SQL_PASSWORD`, but the MCAPS subscription policy requires Entra-only SQL.
 
 ## MCP endpoint
 

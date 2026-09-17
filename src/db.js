@@ -1,3 +1,4 @@
+import { DefaultAzureCredential } from "@azure/identity";
 import sql from "mssql";
 
 const sampleData = {
@@ -40,9 +41,12 @@ const sampleData = {
 };
 
 let poolPromise;
+let credential;
 
 export function hasSqlConfig() {
-  return Boolean(process.env.SQL_SERVER && process.env.SQL_DATABASE && process.env.SQL_USER && process.env.SQL_PASSWORD);
+  const hasPasswordAuth = Boolean(process.env.SQL_USER && process.env.SQL_PASSWORD);
+  const hasEntraAuth = process.env.SQL_AUTH === "entra";
+  return Boolean(process.env.SQL_SERVER && process.env.SQL_DATABASE && (hasPasswordAuth || hasEntraAuth));
 }
 
 export async function getPool() {
@@ -51,11 +55,9 @@ export async function getPool() {
   }
 
   if (!poolPromise) {
-    poolPromise = sql.connect({
+    const config = {
       server: process.env.SQL_SERVER,
       database: process.env.SQL_DATABASE,
-      user: process.env.SQL_USER,
-      password: process.env.SQL_PASSWORD,
       options: {
         encrypt: true,
         trustServerCertificate: false
@@ -65,7 +67,21 @@ export async function getPool() {
         min: 0,
         idleTimeoutMillis: 30000
       }
-    });
+    };
+
+    if (process.env.SQL_AUTH === "entra") {
+      credential ??= new DefaultAzureCredential();
+      const token = await credential.getToken("https://database.windows.net/.default");
+      config.authentication = {
+        type: "azure-active-directory-access-token",
+        options: { token: token.token }
+      };
+    } else {
+      config.user = process.env.SQL_USER;
+      config.password = process.env.SQL_PASSWORD;
+    }
+
+    poolPromise = sql.connect(config);
   }
 
   return poolPromise;

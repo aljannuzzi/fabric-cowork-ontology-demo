@@ -10,6 +10,7 @@
     "check": "node --check src/server.js && node --check src/db.js && node --check src/dataAgent.js && node --check src/mcp.js && node --check src/ontology.js"
   },
   "dependencies": {
+    "@azure/identity": "^4.10.2",
     "express": "^4.19.2",
     "mssql": "^11.0.1"
   },
