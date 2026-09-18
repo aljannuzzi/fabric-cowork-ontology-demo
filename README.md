@@ -25,15 +25,43 @@ Open `http://localhost:3000`.
 
 Without SQL environment variables, the app uses in-memory sample data. With SQL variables set, it creates and seeds Azure SQL tables on startup.
 
-## Azure App Service settings
+## Azure deployment (private by design)
 
-Set these app settings to use Azure SQL:
+Deploy everything with:
+
+```powershell
+.\scripts\deploy-azure.ps1
+```
+
+The database is never exposed to the internet. The deployed topology is:
+
+```text
+Internet -> Container App ingress (MCP + Data Agent API)
+              |  (VNet-injected Container Apps environment)
+              v
+         Private Endpoint (10.42.2.x)
+              |
+              v
+    Azure SQL  (public network access = Disabled, Entra-only auth)
+```
+
+Key properties:
+
+- Azure SQL has `publicNetworkAccess = Disabled` and Entra-only authentication (no SQL passwords anywhere).
+- The Container Apps environment is injected into a VNet, so app-to-database traffic stays on the private network.
+- A private DNS zone `privatelink.database.windows.net` resolves the SQL hostname to the private endpoint IP, so TLS still validates the original hostname.
+- The container app authenticates to SQL with its **system-assigned managed identity**, which is set as the SQL Entra admin.
+- The container app pulls its image from ACR using the same managed identity (`AcrPull`), so no registry credentials are stored.
+
+App settings used by the container:
 
 - `SQL_SERVER`
 - `SQL_DATABASE`
-- `SQL_AUTH=entra` for managed identity / Entra authentication
+- `SQL_AUTH=entra`
 
-Password authentication is also supported for local labs with `SQL_USER` and `SQL_PASSWORD`, but the MCAPS subscription policy requires Entra-only SQL.
+Password authentication (`SQL_USER` / `SQL_PASSWORD`) exists only as a local-development fallback and is not used in Azure.
+
+Only the Data Agent / MCP layer is reachable from outside. That is the point of the architecture: agents talk to the ontology gatekeeper, never directly to the database.
 
 ## MCP endpoint
 
