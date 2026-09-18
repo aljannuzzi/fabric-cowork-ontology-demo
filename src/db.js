@@ -220,6 +220,18 @@ CREATE TABLE dbo.renewals (
   return { mode: "sql", seeded: true };
 }
 
+export async function getAllCustomers() {
+  const pool = await getPool();
+  if (!pool) {
+    return sampleData.customers;
+  }
+
+  const result = await pool.request().query(
+    "SELECT customer_name, segment, industry, account_manager FROM dbo.customers ORDER BY customer_name"
+  );
+  return result.recordset;
+}
+
 export async function getCustomerRiskData(customerName) {
   const pool = await getPool();
   if (!pool) {

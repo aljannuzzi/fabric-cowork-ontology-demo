@@ -41,10 +41,37 @@ app.post("/api/cowork/answer", async (req, res, next) => {
 
 app.post("/mcp", async (req, res, next) => {
   try {
-    res.json(await handleMcpRequest(req.body));
+    res.setHeader("Mcp-Session-Id", "fabric-ontology-agent");
+
+    if (Array.isArray(req.body)) {
+      const responses = [];
+      for (const message of req.body) {
+        const response = await handleMcpRequest(message);
+        if (response) {
+          responses.push(response);
+        }
+      }
+      if (responses.length === 0) {
+        return res.status(202).end();
+      }
+      return res.json(responses);
+    }
+
+    const response = await handleMcpRequest(req.body);
+    if (!response) {
+      return res.status(202).end();
+    }
+    return res.json(response);
   } catch (error) {
     next(error);
   }
+});
+
+app.get("/mcp", (req, res) => {
+  res.status(405).json({
+    jsonrpc: "2.0",
+    error: { code: -32000, message: "This server does not support server-initiated streams. Use POST." }
+  });
 });
 
 app.use((error, req, res, next) => {

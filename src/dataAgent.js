@@ -1,5 +1,9 @@
-import { getCustomerRiskData } from "./db.js";
+import { getCustomerRiskData, getAllCustomers } from "./db.js";
 import { graphPathForRiskBrief } from "./ontology.js";
+
+export async function listCustomers() {
+  return getAllCustomers();
+}
 
 export async function buildCustomerRiskBrief(customerName = "Contoso Mobile") {
   const data = await getCustomerRiskData(customerName);
