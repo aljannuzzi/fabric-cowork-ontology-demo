@@ -1,0 +1,51 @@
+table Customer
+	lineageTag: 511c9558-03d7-4738-be6f-e4647f6ce481
+
+	column customer_id
+		dataType: int64
+		isKey
+		lineageTag: 924b62ae-ccc5-4259-acc3-5b307192a8b6
+		sourceColumn: customer_id
+
+	column customer_name
+		dataType: string
+		lineageTag: f15647cc-430b-4805-aa44-2fc326b6334e
+		sourceColumn: customer_name
+
+	column segment
+		dataType: string
+		lineageTag: 6fe70dcd-8c14-4c75-8ba0-9b8f022cfd34
+		sourceColumn: segment
+
+	column industry
+		dataType: string
+		lineageTag: 57ca253a-53f5-4cf0-8093-7c8e3135158e
+		sourceColumn: industry
+
+	column account_manager
+		dataType: string
+		lineageTag: eb6ae660-7b26-48dc-9a2a-a84fadbc7c49
+		sourceColumn: account_manager
+
+	partition Customer = entity
+		mode: directLake
+		source
+			entityName: customers
+			expressionSource: 'DirectLake - NovaTelLakehouse'
+
+		annotation ONT_WorkspaceId = <WORKSPACE_ID>
+
+		annotation ONT_ItemId = <LAKEHOUSE_ID>
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = NovaTelLakehouse
+
+		annotation ONT_WorkspaceName = NovaTel Ontology Demo
+
+		annotation ONT_SqlEndpoint = <SQL_ENDPOINT>
+
+		annotation ONT_SqlDatabase = NovaTelLakehouse
+
+		annotation ONT_PinnedAtUtc = 2026-09-18T15:12:44.063Z
+

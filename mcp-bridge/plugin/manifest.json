@@ -1,0 +1,49 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.27/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.27",
+  "version": "1.0.0",
+  "id": "4c7b1f6a-92d3-4a18-b0e5-7f3c2d9a6e51",
+  "developer": {
+    "name": "NovaTel Demo",
+    "websiteUrl": "https://github.com/<GITHUB_USER>/fabric-cowork-ontology-demo",
+    "privacyUrl": "https://github.com/<GITHUB_USER>/fabric-cowork-ontology-demo#privacy",
+    "termsOfUseUrl": "https://github.com/<GITHUB_USER>/fabric-cowork-ontology-demo#terms"
+  },
+  "name": {
+    "short": "NovaTel Customer IQ",
+    "full": "NovaTel Customer Intelligence (Fabric IQ)"
+  },
+  "description": {
+    "short": "Ontology-grounded answers about NovaTel enterprise customers.",
+    "full": "Answers questions about NovaTel Enterprise telco customer accounts by calling a Microsoft Fabric Data Agent that is grounded in the NovaTel Fabric IQ ontology (Customer, Subscription, Product, Usage, Experience, RenewalRisk) and queries live OneLake data. Use it for renewal risk, churn, ARR, revenue exposure, subscriptions, product usage, consumption trends, support tickets, SLA breaches, NPS and overall account health."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#1B5E8C",
+  "agentConnectors": [
+    {
+      "id": "novatel-customer-intelligence",
+      "displayName": "NovaTel Customer Intelligence",
+      "description": "Ontology-grounded customer intelligence for NovaTel Enterprise. Use this connector for any question about a named customer account, renewal risk, churn, revenue exposure, ARR, subscriptions, product usage, consumption trends, support tickets, SLA breaches, NPS or account health. Customers include Contoso Mobile, Fabrikam Retail and Northwind Logistics. Answers come from a Microsoft Fabric Data Agent grounded in the NovaTel Fabric IQ ontology, backed by live OneLake data.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://<MCP_HOST>/mcp",
+          "authorization": {
+            "type": "None"
+          },
+          "mcpToolDescription": {
+            "file": "toolDescription.json"
+          }
+        }
+      }
+    }
+  ],
+  "permissions": [
+    "identity"
+  ],
+  "validDomains": [
+    "<MCP_HOST>"
+  ]
+}

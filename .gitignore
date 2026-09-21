@@ -1,6 +1,11 @@
 node_modules/
 .env
-.DS_Store
+.env.*
 *.log
 dist/
 .azure/
+*.zip
+deploy.zip
+local.log
+local.err
+.DS_Store

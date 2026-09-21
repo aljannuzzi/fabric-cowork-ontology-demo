@@ -1,0 +1,51 @@
+table Subscription
+	lineageTag: 35888eba-b44d-4ded-9bbe-8398df4e362f
+
+	column subscription_id
+		dataType: int64
+		isKey
+		lineageTag: c62241e0-e118-4035-b789-0734528d9d06
+		sourceColumn: subscription_id
+
+	column customer_id
+		dataType: int64
+		lineageTag: c2786df5-71f4-4094-b6f1-d2d689308738
+		sourceColumn: customer_id
+
+	column product_id
+		dataType: int64
+		lineageTag: 0601c840-d694-46f7-b341-f8ad484668ab
+		sourceColumn: product_id
+
+	column seats
+		dataType: int64
+		lineageTag: d88c89a5-ce4f-4764-8509-cdd0ed956928
+		sourceColumn: seats
+
+	column arr_usd
+		dataType: int64
+		lineageTag: fd6940d4-d243-4bc3-bad8-87a5905ed4fb
+		sourceColumn: arr_usd
+
+	partition Subscription = entity
+		mode: directLake
+		source
+			entityName: subscriptions
+			expressionSource: 'DirectLake - NovaTelLakehouse'
+
+		annotation ONT_WorkspaceId = <WORKSPACE_ID>
+
+		annotation ONT_ItemId = <LAKEHOUSE_ID>
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = NovaTelLakehouse
+
+		annotation ONT_WorkspaceName = NovaTel Ontology Demo
+
+		annotation ONT_SqlEndpoint = <SQL_ENDPOINT>
+
+		annotation ONT_SqlDatabase = NovaTelLakehouse
+
+		annotation ONT_PinnedAtUtc = 2026-09-18T15:16:08.482Z
+

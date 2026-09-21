@@ -1,0 +1,5 @@
+/// Support tickets, severity, and SLA breaches describing how well the customer is served.
+entity Experience
+	lineageTag: 580e4563-4a15-463b-8c67-442047775cb8
+	backingTable: Experience
+

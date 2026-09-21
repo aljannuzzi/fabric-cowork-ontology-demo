@@ -1,0 +1,18 @@
+model Model
+
+ref table Customer
+ref table Product
+ref table Subscription
+ref table Usage
+ref table Experience
+ref table RenewalRisk
+
+ref entity Customer
+ref entity Subscription
+ref entity Product
+ref entity Usage
+ref entity Experience
+ref entity RenewalRisk
+
+ref namespace default
+

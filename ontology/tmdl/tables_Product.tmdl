@@ -1,0 +1,46 @@
+table Product
+	lineageTag: b7d5775f-7ab2-4816-9ec8-c17c04404552
+
+	column product_id
+		dataType: int64
+		isKey
+		lineageTag: 2eed47dc-bb17-4ceb-ae89-e3f8b07de346
+		sourceColumn: product_id
+
+	column product_name
+		dataType: string
+		lineageTag: ff683fb2-ce19-4241-beb3-ea291bb7b6f8
+		sourceColumn: product_name
+
+	column category
+		dataType: string
+		lineageTag: 3e60f786-33fd-4fff-9ba9-06f233f63c79
+		sourceColumn: category
+
+	column margin_band
+		dataType: string
+		lineageTag: 81cbb87a-b642-4911-8235-ed80312a1f95
+		sourceColumn: margin_band
+
+	partition Product = entity
+		mode: directLake
+		source
+			entityName: products
+			expressionSource: 'DirectLake - NovaTelLakehouse'
+
+		annotation ONT_WorkspaceId = <WORKSPACE_ID>
+
+		annotation ONT_ItemId = <LAKEHOUSE_ID>
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = NovaTelLakehouse
+
+		annotation ONT_WorkspaceName = NovaTel Ontology Demo
+
+		annotation ONT_SqlEndpoint = <SQL_ENDPOINT>
+
+		annotation ONT_SqlDatabase = NovaTelLakehouse
+
+		annotation ONT_PinnedAtUtc = 2026-09-18T15:14:05.782Z
+

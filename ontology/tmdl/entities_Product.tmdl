@@ -1,0 +1,5 @@
+/// A commercial offer NovaTel sells, with its category and margin profile.
+entity Product
+	lineageTag: abb4a876-87a9-42d5-80b4-f4f076a3fdb7
+	backingTable: Product
+

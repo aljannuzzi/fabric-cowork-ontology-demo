@@ -1,0 +1,7 @@
+expression 'DirectLake - NovaTelLakehouse' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/<WORKSPACE_ID>/<LAKEHOUSE_ID>", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: b0f1850d-3197-4663-98cf-df955259965e
+

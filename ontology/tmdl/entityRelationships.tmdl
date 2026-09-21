@@ -1,0 +1,49 @@
+/// A customer owns one or more subscriptions.
+entityRelationship owns
+	label: owns
+	lineageTag: f3326f83-0b0d-4b61-b772-d0cf6705b030
+	fromEntity: Customer
+	toEntity: Subscription
+
+/// A subscription contains the product being sold.
+entityRelationship contains
+	label: contains
+	lineageTag: c5dd5952-0e19-4efe-96ac-f9459d81d129
+	fromEntity: Subscription
+	toEntity: Product
+
+/// A subscription generates monthly consumption.
+entityRelationship generates
+	label: generates
+	lineageTag: a7af7f5e-7fd2-467b-b8f8-99809d8b4fb0
+	fromEntity: Subscription
+	toEntity: Usage
+
+/// Consumption growth and network quality affect the support experience.
+entityRelationship affects
+	label: affects
+	lineageTag: 4932cdf8-8a8c-4053-833e-f8bfeec96d79
+	fromEntity: Usage
+	toEntity: Experience
+
+/// A degraded experience increases renewal risk.
+entityRelationship increases
+	label: increases
+	lineageTag: 241e6fce-9472-4353-9f8f-f4b9532155d7
+	fromEntity: Experience
+	toEntity: RenewalRisk
+
+/// A customer reports support tickets.
+entityRelationship reports
+	label: reports
+	lineageTag: e4f00120-812d-41e0-8474-f3359e0d2b98
+	fromEntity: Customer
+	toEntity: Experience
+
+/// A customer faces a renewal decision with measurable risk.
+entityRelationship faces
+	label: faces
+	lineageTag: 5ebd6fbf-0831-4ed9-96ea-1eb529a4954c
+	fromEntity: Customer
+	toEntity: RenewalRisk
+

@@ -1,0 +1,56 @@
+table Usage
+	lineageTag: 1e5f0496-f3e6-426f-b750-636f228c0c0e
+
+	column usage_id
+		dataType: int64
+		isKey
+		lineageTag: c87c2547-41bf-4f51-909c-757848b0470d
+		sourceColumn: usage_id
+
+	column customer_id
+		dataType: int64
+		lineageTag: fe81067e-3d26-4056-a0ef-154abedf9c87
+		sourceColumn: customer_id
+
+	column month
+		dataType: dateTime
+		lineageTag: bc30d88a-f57a-4875-8e4c-70355e34cd12
+		sourceColumn: month
+
+	column data_tb
+		dataType: int64
+		lineageTag: 372ec136-9e6a-4645-a6a2-d63eb59fab29
+		sourceColumn: data_tb
+
+	column roaming_gb
+		dataType: int64
+		lineageTag: 49c20a56-77a2-4343-8aeb-fd8849a46da5
+		sourceColumn: roaming_gb
+
+	column dropped_call_rate
+		dataType: double
+		lineageTag: 94cb729f-ef80-41ab-bfdb-5e158a9dc945
+		sourceColumn: dropped_call_rate
+
+	partition Usage = entity
+		mode: directLake
+		source
+			entityName: usage_metrics
+			expressionSource: 'DirectLake - NovaTelLakehouse'
+
+		annotation ONT_WorkspaceId = <WORKSPACE_ID>
+
+		annotation ONT_ItemId = <LAKEHOUSE_ID>
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = NovaTelLakehouse
+
+		annotation ONT_WorkspaceName = NovaTel Ontology Demo
+
+		annotation ONT_SqlEndpoint = <SQL_ENDPOINT>
+
+		annotation ONT_SqlDatabase = NovaTelLakehouse
+
+		annotation ONT_PinnedAtUtc = 2026-09-18T15:17:42.253Z
+

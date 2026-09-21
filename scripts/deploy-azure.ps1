@@ -17,7 +17,7 @@ $VnetName = "vnet-fabric-cowork-$suffix"
 $AcaSubnet = "snet-containerapps"
 $PeSubnet = "snet-private-endpoints"
 $EnvName = "fabric-cowork-ontology-$suffix-vnet-env"
-$AcrName = "acrfabriccowork$suffix"
+$AcrName = "acr<ACR_PREFIX>$suffix"
 $SqlZone = "privatelink.database.windows.net"
 
 Write-Host "Registering resource providers..."

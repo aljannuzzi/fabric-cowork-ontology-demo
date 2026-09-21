@@ -1,0 +1,5 @@
+/// Renewal timing, negotiation stage, and NPS that express commercial risk.
+entity RenewalRisk
+	lineageTag: 1d970dec-6a04-4eae-8789-afa7ad53c4de
+	backingTable: RenewalRisk
+

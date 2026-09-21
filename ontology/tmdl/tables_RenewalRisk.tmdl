@@ -1,0 +1,51 @@
+table RenewalRisk
+	lineageTag: 0c588109-f683-444d-91ef-bb7fa5165aa1
+
+	column renewal_id
+		dataType: int64
+		isKey
+		lineageTag: b7d24275-d2a6-44c3-b5e5-0b5bc7d424e1
+		sourceColumn: renewal_id
+
+	column customer_id
+		dataType: int64
+		lineageTag: ae64fdff-abaf-4645-8d33-4331dc58d436
+		sourceColumn: customer_id
+
+	column renewal_date
+		dataType: dateTime
+		lineageTag: 76c32f82-c3dc-450a-b673-271181612c30
+		sourceColumn: renewal_date
+
+	column stage
+		dataType: string
+		lineageTag: ab783595-1012-42ed-8342-4c70eb8ae206
+		sourceColumn: stage
+
+	column nps_score
+		dataType: int64
+		lineageTag: f93a566f-0ae6-47b9-ae26-4525985a59f6
+		sourceColumn: nps_score
+
+	partition RenewalRisk = entity
+		mode: directLake
+		source
+			entityName: renewals
+			expressionSource: 'DirectLake - NovaTelLakehouse'
+
+		annotation ONT_WorkspaceId = <WORKSPACE_ID>
+
+		annotation ONT_ItemId = <LAKEHOUSE_ID>
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = NovaTelLakehouse
+
+		annotation ONT_WorkspaceName = NovaTel Ontology Demo
+
+		annotation ONT_SqlEndpoint = <SQL_ENDPOINT>
+
+		annotation ONT_SqlDatabase = NovaTelLakehouse
+
+		annotation ONT_PinnedAtUtc = 2026-09-18T15:20:52.415Z
+

@@ -1,0 +1,30 @@
+{
+  "tools": [
+    {
+      "name": "customer_intelligence",
+      "title": "NovaTel customer intelligence",
+      "description": "Ask the NovaTel Fabric Data Agent a natural-language question about an enterprise telco customer account. The Data Agent is grounded in the NovaTel Fabric IQ ontology (Customer, Subscription, Product, Usage, Experience, RenewalRisk) and queries live OneLake data. Use for renewal risk, churn, ARR, revenue exposure, subscriptions, product usage, consumption trends, support tickets, SLA breaches, NPS and overall account health.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The business question in natural language, e.g. 'What is the renewal risk for Contoso Mobile and why?'. Include the customer name when known."
+          }
+        },
+        "required": [
+          "question"
+        ]
+      }
+    },
+    {
+      "name": "describe_ontology",
+      "title": "Describe the NovaTel ontology",
+      "description": "Return the NovaTel Fabric IQ ontology: business entities, their physical tables and the relationships that connect them. Use to explain how the business graph is structured.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}

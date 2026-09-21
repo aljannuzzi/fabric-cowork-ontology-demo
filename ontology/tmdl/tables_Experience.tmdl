@@ -1,0 +1,61 @@
+table Experience
+	lineageTag: 411b5b5c-105c-4654-9e99-d14fc55012ad
+
+	column ticket_id
+		dataType: int64
+		isKey
+		lineageTag: 0697b7f8-4b06-4fc0-a370-61c58302cfea
+		sourceColumn: ticket_id
+
+	column customer_id
+		dataType: int64
+		lineageTag: 7a3989d9-5663-46f6-a9b2-54dbcbbb5ad5
+		sourceColumn: customer_id
+
+	column opened_at
+		dataType: dateTime
+		lineageTag: 5e026cc2-ef5f-4dac-b46d-2ba09bc6b3e7
+		sourceColumn: opened_at
+
+	column severity
+		dataType: string
+		lineageTag: ed8dddeb-26f5-4219-9bba-921cd3dcf459
+		sourceColumn: severity
+
+	column status
+		dataType: string
+		lineageTag: f01b66a5-9f64-45dc-b93f-c09594ff1fb5
+		sourceColumn: status
+
+	column sla_breached
+		dataType: int64
+		lineageTag: 569ef1c2-31dc-43f0-b108-265dde1c575c
+		sourceColumn: sla_breached
+
+	column topic
+		dataType: string
+		lineageTag: b23b5028-d5f8-4a70-b994-545001205a1d
+		sourceColumn: topic
+
+	partition Experience = entity
+		mode: directLake
+		source
+			entityName: support_tickets
+			expressionSource: 'DirectLake - NovaTelLakehouse'
+
+		annotation ONT_WorkspaceId = <WORKSPACE_ID>
+
+		annotation ONT_ItemId = <LAKEHOUSE_ID>
+
+		annotation ONT_ItemKind = Lakehouse
+
+		annotation ONT_ItemName = NovaTelLakehouse
+
+		annotation ONT_WorkspaceName = NovaTel Ontology Demo
+
+		annotation ONT_SqlEndpoint = <SQL_ENDPOINT>
+
+		annotation ONT_SqlDatabase = NovaTelLakehouse
+
+		annotation ONT_PinnedAtUtc = 2026-09-18T15:19:17.679Z
+

@@ -1,0 +1,5 @@
+/// The commercial relationship linking a customer to a product, carrying seats and ARR.
+entity Subscription
+	lineageTag: 872f7eb6-573d-4c8e-8612-b9afc325d614
+	backingTable: Subscription
+

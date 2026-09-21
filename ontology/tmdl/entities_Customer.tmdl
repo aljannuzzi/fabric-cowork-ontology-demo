@@ -1,0 +1,5 @@
+/// A NovaTel enterprise account. The commercial subject the whole ontology hangs from.
+entity Customer
+	lineageTag: 8329e259-2881-4867-86b0-01b3f1cf08e9
+	backingTable: Customer
+
